@@ -1,5 +1,7 @@
 package models;
 
+import java.time.LocalDate;
+
 public class Book {
     private String name;
 
@@ -15,6 +17,8 @@ public class Book {
 
     private static int counter = 1;
 
+    private LocalDate localDate;
+
   public Book(String name, String author, int publishDate, int numberOfPages) {
     this.name = name;
     Author = author;
@@ -22,6 +26,7 @@ public class Book {
     this.numberOfPages = numberOfPages;
     this.id = counter;
     counter++;
+    localDate = LocalDate.of(2000,11,15);
   }
 
   @Override
@@ -33,7 +38,7 @@ public class Book {
         ", numberOfPages=" + numberOfPages +
         ", isTaken=" + isTaken +
         ", id=" + id +
-        '}';
+        '}' + "\n";
   }
 
   public String getName() {
@@ -74,5 +79,17 @@ public class Book {
 
   public void setTaken(boolean taken) {
     isTaken = taken;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public LocalDate getLocalDate() {
+    return localDate;
+  }
+
+  public void setLocalDate(LocalDate localDate) {
+    this.localDate = localDate;
   }
 }
