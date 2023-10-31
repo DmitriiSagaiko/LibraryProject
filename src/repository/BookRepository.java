@@ -32,6 +32,7 @@ public class BookRepository {
 
   public void addBook(Book book) {
     books.add(book);//
+    System.out.println("Книга была добавлена\n");
   }
 
   public MyArrayList<Book> getAll() {
@@ -61,11 +62,40 @@ public class BookRepository {
           System.out.println("Книга уже взята! Попобуйте взять другую книгу");
           return null;
         }
-      } else {
-        System.out.println("Такой книги в библиотеке нет! Попробуйте взять другую книгу");
-        return null;
       }
     }
+    System.out.println("Такой книги в библиотеке нет! Попробуйте взять другую книгу");
     return null;
+  }
+
+
+  public Book returnBook(int id) {
+    for (Book book : books) {
+      if (book.getId() == id) {
+        if (book.isTaken()) {
+          book.setTaken(false);
+          System.out.println("Книга " + book.getName() + " была возвращена!");
+          return book;
+        } else {
+          System.out.println("Книга с таким ID уже находится в библиотеке");
+          return null;
+        }
+      }
+    }
+    System.out.println("Книга с таким ID не найдена");
+    return null;
+  }
+
+  public MyArrayList<Book> showAllBooksByAuthor(String name) {
+    // TODO Пробежаться циклом по всем книгам, если Author.isEqual name
+    // Добавить его в массив
+    // Важно возвращать копию массива, а не исходный вариант.
+    MyArrayList<Book> output = new MyArrayList<>();
+    for ( Book book : books) {
+      if (book.getAuthor().equals(name)) {
+        output.add(book);
+      }
+    }
+    return output;
   }
 }

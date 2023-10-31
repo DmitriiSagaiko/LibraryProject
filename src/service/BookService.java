@@ -32,61 +32,46 @@ public class BookService {
   }
 
   public boolean takeBookWithDate(int id) {
-    // Если книга уже взята( isTaken == true), return null + собщение( нельзя взять взятое)
-    //TODO У каждой книги свой ID, Книга будет браться по id.
-    //TODO дата/время будет браться с помощью LocalDate
-    // книге в поле isTaken присвоить true;
-
-    bookRepository.takeBookWithDate(id);
+    //bookRepository.takeBookWithDate(id);
     return bookRepository.takeBookWithDate(id) != null;
   }
 
-  public Book returnBook(int id) {
-    //TODO. Проверить через if ID, если такого id нет, то книгу нельзя вернуть.
-    // Если такая книга есть, то вернуть ее через репозиторий
-
-    // isTaken == false
-    //Book book = bookRepository.returnBook(id);
-    //return book;
-    return null;
+  public void returnBook(int id) {
+    bookRepository.returnBook(id);
   }
 
-  public Book[] returnAllFreeBooks() {
+  public MyArrayList<Book> showAllFreeBooks() {
     //TODO в репозитории пробежаться циклом по всем книгам,
     // Если isTaken==false, добавить ее в новый массив.
     // Важно возвращать копию массива, а не исходный вариант.
 
-    //Book[] output = bookRepository.returnAllFreeBooks();
+    //Book[] output = bookRepository.showAllFreeBooks();
     //return output;
     return null;
   }
 
-  public Book[] returnAllTakenBooks() {
+  public MyArrayList<Book> showAllTakenBooks() {
     //TODO в репозитории пробежаться циклом по всем книгам,
     // Если isTaken==true, добавить ее в новый массив.
     // Важно возвращать копию массива, а не исходный вариант.
 
-    //Book[] output = bookRepository.returnAllTakenBooks();
+    //Book[] output = bookRepository.showAllTakenBooks();
     //return output;
     return null;
   }
 
-  public Book[] returnAllBooksByAuthor(String name) {
-    // TODO Пробежаться циклом по всем книгам, если Author.isEqual name
-    // Добавить его в массив
-    // Важно возвращать копию массива, а не исходный вариант.
-
-    //Book[] output = bookRepository.returnAllBooksByAuthor(name);
-    //return output;
-    return null;
+  public MyArrayList<Book> showAllBooksByAuthor(String name) {
+    MyArrayList<Book> output = bookRepository.showAllBooksByAuthor(name);
+    return output;
+    //return null;
   }
 
-  public Book[] returnBooksByName(String name) {
+  public Book[] showBooksByName(String name) {
     // TODO Пробежаться циклом по всем книгам, если BookName.isEqual name
     // Добавить его в массив
     // Важно возвращать копию массива, а не исходный вариант.
 
-    //Book[] output = bookRepository.returnAllBooksByName(name);
+    //Book[] output = bookRepository.showAllBooksByName(name);
     //return output;
     return null;
 
