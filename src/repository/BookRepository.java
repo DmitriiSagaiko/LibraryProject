@@ -13,10 +13,11 @@ public class BookRepository {
   public BookRepository() {
     books = new MyArrayList<>();
     init();
+
   }
 
   private void init() {
-    //TODO залить 8-10 книг
+    System.out.println("Вызов метода init");
     books.addAll(
         // TODO добавить несколько кнги от одного автора
         new Book("Война и Мир часть 1", "Толстой Л.Н.", 1915, 460),
