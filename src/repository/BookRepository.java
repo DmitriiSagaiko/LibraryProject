@@ -23,11 +23,13 @@ public class BookRepository {
         new Book("Война и Мир часть 2", "Толстой Л.Н.", 1917, 460),
         new Book("Война и Мир часть 3", "Толстой Л.Н.", 1918, 460),
         new Book("Война и Мир часть 4", "Толстой Л.Н.", 1920, 460),
-        new Book("Гарри Поттер часть 1", "Роулинг Дж.", 1950, 600),
+        new Book("Гарри Поттер часть 1", "Роулинг Дж.", 1999, 600),
         new Book("Горе от ума", "Грибоедов А.С.", 1905, 250),
         new Book("Алмазная колесница", "Акунин Б.", 1988, 340),
         new Book("Сборник детективов", "Донцова Д.", 2004, 237),
-        new Book("Новая книга", "Пелевин В.", 2004, 237));
+        new Book("Новая книга", "Пелевин В.", 2004, 237),
+        new Book("Гарри Поттер часть 1", "Роулинг Дж.", 2004, 237)
+        );
   }
 
   public void addBook(Book book) {
@@ -105,7 +107,17 @@ public class BookRepository {
     }
     return output;
   }
+  public MyArrayList<Book> showAllBooksByName(String name) {
+    MyArrayList<Book> output = new MyArrayList<>();
+    for ( Book book : books) {
+      if (book.getName().equals(name)) {
+        output.add(book);
+      }
+    }
+    return output;
+  }
+
 }
 
 
-}
+

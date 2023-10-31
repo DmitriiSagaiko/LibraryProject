@@ -32,7 +32,6 @@ public class BookService {
   }
 
   public boolean takeBookWithDate(int id) {
-    //bookRepository.takeBookWithDate(id);
     return bookRepository.takeBookWithDate(id) != null;
   }
 
@@ -41,13 +40,7 @@ public class BookService {
   }
 
   public MyArrayList<Book> showAllFreeBooks() {
-    //TODO в репозитории пробежаться циклом по всем книгам,
-    // Если isTaken==false, добавить ее в новый массив.
-    // Важно возвращать копию массива, а не исходный вариант.
-
-    //Book[] output = bookRepository.showAllFreeBooks();
-    //return output;
-    return null;
+    return bookRepository.showAllFreeBooks();
   }
 
   public MyArrayList<Book> showAllTakenBooks() {
@@ -55,27 +48,16 @@ public class BookService {
     // Если isTaken==true, добавить ее в новый массив.
     // Важно возвращать копию массива, а не исходный вариант.
 
-    //Book[] output = bookRepository.showAllTakenBooks();
-    //return output;
     return null;
   }
 
   public MyArrayList<Book> showAllBooksByAuthor(String name) {
     MyArrayList<Book> output = bookRepository.showAllBooksByAuthor(name);
     return output;
-    //return null;
   }
 
-  public Book[] showBooksByName(String name) {
-    // TODO Пробежаться циклом по всем книгам, если BookName.isEqual name
-    // Добавить его в массив
-    // Важно возвращать копию массива, а не исходный вариант.
-
-    //Book[] output = bookRepository.showAllBooksByName(name);
-    //return output;
-    return null;
-
+  public MyArrayList<Book> showBooksByName(String name) {
+    return bookRepository.showAllBooksByName(name);
   }
-
 
 }

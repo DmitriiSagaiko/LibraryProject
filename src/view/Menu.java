@@ -63,11 +63,11 @@ public class Menu {
         }
         break;
         case 5: {
-          bookService.showAllFreeBooks();
+          System.out.println(bookService.showAllFreeBooks());
         }
         break;
         case 6: {
-          bookService.showAllTakenBooks();
+          System.out.println(bookService.showAllTakenBooks());
         }
         break;
         case 7: {
