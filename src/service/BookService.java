@@ -44,11 +44,7 @@ public class BookService {
   }
 
   public MyArrayList<Book> showAllTakenBooks() {
-    //TODO в репозитории пробежаться циклом по всем книгам,
-    // Если isTaken==true, добавить ее в новый массив.
-    // Важно возвращать копию массива, а не исходный вариант.
-
-    return null;
+    return bookRepository.showAllTakenBooks();
   }
 
   public MyArrayList<Book> showAllBooksByAuthor(String name) {

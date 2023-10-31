@@ -116,8 +116,17 @@ public class BookRepository {
     }
     return output;
   }
-
+  public MyArrayList<Book> showAllTakenBooks() {
+    MyArrayList<Book> output = new MyArrayList<>();
+    for (Book book : books) {
+      if (book.isTaken()) {
+        output.add(book);
+      }
+    }
+    return output;
+  }
 }
+
 
 
 
