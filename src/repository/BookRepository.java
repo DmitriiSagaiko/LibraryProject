@@ -87,9 +87,6 @@ public class BookRepository {
   }
 
   public MyArrayList<Book> showAllBooksByAuthor(String name) {
-    // TODO Пробежаться циклом по всем книгам, если Author.isEqual name
-    // Добавить его в массив
-    // Важно возвращать копию массива, а не исходный вариант.
     MyArrayList<Book> output = new MyArrayList<>();
     for ( Book book : books) {
       if (book.getAuthor().equals(name)) {
@@ -98,4 +95,17 @@ public class BookRepository {
     }
     return output;
   }
+
+  public MyArrayList<Book> showAllFreeBooks() {
+    MyArrayList<Book> output = new MyArrayList<>();
+    for (Book book : books) {
+      if (!book.isTaken()) {
+        output.add(book);
+      }
+    }
+    return output;
+  }
+}
+
+
 }
