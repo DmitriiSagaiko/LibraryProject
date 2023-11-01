@@ -3,41 +3,45 @@ package models;
 import java.time.LocalDate;
 
 public class Book {
-    private String name;
 
-    private String Author;
+  private String name;
 
-    private int publishDate;
+  private String author;
 
-    private int numberOfPages;
+  private int publishDate;
 
-    private boolean isTaken;
+  private int numberOfPages;
 
-    private final int id;
+  private boolean isTaken;
 
-    private static int counter = 1;
+  private final int id;
 
-    private LocalDate localDate;
+  //private final Reader reader;
+
+  private static int counter = 1;
+
+  private LocalDate localDate;
 
   public Book(String name, String author, int publishDate, int numberOfPages) {
     this.name = name;
-    Author = author;
+    this.author = author;
     this.publishDate = publishDate;
     this.numberOfPages = numberOfPages;
     this.id = counter;
     counter++;
-    localDate = LocalDate.of(2000,11,15);
+    localDate = LocalDate.of(2000, 11, 15);
   }
 
   @Override
   public String toString() {
     return "Book{" +
         "name='" + name + '\'' +
-        ", Author='" + Author + '\'' +
+        ", Author='" + author + '\'' +
         ", publishDate=" + publishDate +
         ", numberOfPages=" + numberOfPages +
         ", isTaken=" + isTaken +
         ", id=" + id +
+        ", Дата " + localDate +
         '}' + "\n";
   }
 
@@ -50,11 +54,11 @@ public class Book {
   }
 
   public String getAuthor() {
-    return Author;
+    return author;
   }
 
   public void setAuthor(String author) {
-    Author = author;
+    this.author = author;
   }
 
   public int getPublishDate() {
@@ -91,5 +95,12 @@ public class Book {
 
   public void setLocalDate(LocalDate localDate) {
     this.localDate = localDate;
+  }
+
+  public int getCounter() {
+    return counter;
+  }
+  public static void setCounter(int counter) {
+    Book.counter = counter;
   }
 }

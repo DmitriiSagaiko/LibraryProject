@@ -27,11 +27,11 @@ public class BookService {
   }
 
   public MyArrayList<Book> getAllBooks() {
-    MyArrayList<Book> output = bookRepository.getAll();
-    return output;
+    return bookRepository.getAll();
   }
 
   public boolean takeBookWithDate(int id) {
+    // Будет вызываться 2 метода про пользователя
     return bookRepository.takeBookWithDate(id) != null;
   }
 
@@ -39,21 +39,23 @@ public class BookService {
     bookRepository.returnBook(id);
   }
 
+
   public MyArrayList<Book> showAllFreeBooks() {
-    return bookRepository.showAllFreeBooks();
+    return bookRepository.getBooksByPredicate(book -> !book.isTaken());
   }
 
+
   public MyArrayList<Book> showAllTakenBooks() {
-    return bookRepository.showAllTakenBooks();
+    return bookRepository.getBooksByPredicate(Book::isTaken);
   }
 
   public MyArrayList<Book> showAllBooksByAuthor(String name) {
-    MyArrayList<Book> output = bookRepository.showAllBooksByAuthor(name);
-    return output;
+    return bookRepository.getBooksByPredicate(book -> book.getAuthor().equals(name));
   }
 
-  public MyArrayList<Book> showBooksByName(String name) {
-    return bookRepository.showAllBooksByName(name);
+
+  public MyArrayList<Book> showAllBooksByName(String name) {
+    return bookRepository.getBooksByPredicate(book -> book.getName().equals(name));
   }
 
 }

@@ -6,6 +6,8 @@ public class Reader {
   private String lastName;
 
   private int age;
+  //Список книг
+
 
   private int booksCount;
 

@@ -14,6 +14,7 @@ import service.BookService;
 public class TestForServiceLayer {
 
   private BookService bookService;
+  private Book book;
 
 
   public TestForServiceLayer() {
@@ -24,6 +25,7 @@ public class TestForServiceLayer {
   @BeforeEach
   void setUp() {
     //new TestForServiceLayer();
+    Book.setCounter(1);
   }
 
   @Test
@@ -62,6 +64,15 @@ public class TestForServiceLayer {
   }
 
   @Test
+  void testTakeBookWithDateIncorrectId() {
+    for (int i = 12; i <= 50; i++) {
+      Assertions.assertFalse(bookService.takeBookWithDate(i));
+    }
+  }
+
+  /////////////////////////////////////////////////////////
+
+  @Test
   void testShowAllBooksByAuthor() {
     MyArrayList<Book> books = bookService.showAllBooksByAuthor("Толстой Л.Н.");
     int count = 0;
@@ -69,6 +80,49 @@ public class TestForServiceLayer {
       count++;
     }
     Assertions.assertEquals(4, count);
+  }
+
+  @Test
+  void testShowInvalidAllBooksByAuthor() {
+    MyArrayList<Book> books = bookService.showAllBooksByAuthor("Пушкин А. С.");
+    int count = 0;
+    for (Book book :books) {
+      count++;
+    }
+    System.out.println("реалmное количество книг в библиотеке " + count);
+    Assertions.assertEquals(0, count);
+  }
+
+  @Test
+  void testShowAllBooksByName() {
+    MyArrayList<Book> books = bookService.showAllBooksByName("Гарри Поттер часть 1");
+    int count = 0;
+    for (Book book :books) {
+      count++;
+    }
+    Assertions.assertEquals(2, count);
+  }
+
+  @Test
+  void testShowInvalidAllBooksByName() {
+    MyArrayList<Book> books = bookService.showAllBooksByName("Человек паук");
+    int count = 0;
+    for (Book book :books) {
+      count++;
+    }
+    Assertions.assertEquals(0, count);
+  }
+
+
+
+
+
+  @Test
+  void testReturnBook() {
+    System.out.println(bookService.getAllBooks());
+    //Assertions.assertEquals(Void,void);
+    //Assertions.assertEquals(book, bookService.returnBook(book.getId()));
+    //Assertions.assertFalse(book.isTaken());
   }
 
 

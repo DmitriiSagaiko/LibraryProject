@@ -1,6 +1,7 @@
 package repository;
 
 import java.time.LocalDate;
+import java.util.function.Predicate;
 import lib.MyArrayList;
 import models.Book;
 
@@ -11,7 +12,6 @@ public class BookRepository {
   public BookRepository() {
     books = new MyArrayList<>();
     init();
-
   }
 
   private void init() {
@@ -27,7 +27,7 @@ public class BookRepository {
         new Book("Сборник детективов", "Донцова Д.", 2004, 237),
         new Book("Новая книга", "Пелевин В.", 2004, 237),
         new Book("Гарри Поттер часть 1", "Роулинг Дж.", 2004, 237)
-        );
+    );
   }
 
   public void addBook(Book book) {
@@ -86,43 +86,17 @@ public class BookRepository {
     return null;
   }
 
-  public MyArrayList<Book> showAllBooksByAuthor(String name) {
-    MyArrayList<Book> output = new MyArrayList<>();
-    for ( Book book : books) {
-      if (book.getAuthor().equals(name)) {
-        output.add(book);
+
+  public MyArrayList<Book> getBooksByPredicate(Predicate<Book> predicate) {
+    MyArrayList<Book> result = new MyArrayList<>();
+    for (Book book : books) {
+      if (predicate.test(book)) {
+        result.add(book);
       }
     }
-    return output;
+    return result;
   }
 
-  public MyArrayList<Book> showAllFreeBooks() {
-    MyArrayList<Book> output = new MyArrayList<>();
-    for (Book book : books) {
-      if (!book.isTaken()) {
-        output.add(book);
-      }
-    }
-    return output;
-  }
-  public MyArrayList<Book> showAllBooksByName(String name) {
-    MyArrayList<Book> output = new MyArrayList<>();
-    for ( Book book : books) {
-      if (book.getName().equals(name)) {
-        output.add(book);
-      }
-    }
-    return output;
-  }
-  public MyArrayList<Book> showAllTakenBooks() {
-    MyArrayList<Book> output = new MyArrayList<>();
-    for (Book book : books) {
-      if (book.isTaken()) {
-        output.add(book);
-      }
-    }
-    return output;
-  }
 }
 
 

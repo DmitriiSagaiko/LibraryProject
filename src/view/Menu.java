@@ -64,6 +64,7 @@ public class Menu {
         break;
         case 5: {
           System.out.println(bookService.showAllFreeBooks());
+
         }
         break;
         case 6: {
@@ -79,7 +80,7 @@ public class Menu {
         case 8: {
           System.out.println("Введите искомое название");
           String name = scanner.nextLine();
-          System.out.println(bookService.showBooksByName(name));
+          System.out.println(bookService.showAllBooksByName(name));
         }
       }
     }
