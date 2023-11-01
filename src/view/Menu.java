@@ -23,6 +23,10 @@ public class Menu {
       System.out.println("6. Показать все книги, которые были взяты");
       System.out.println("7. Показать все книги от заданного автора");
       System.out.println("8. Показать все книги по заданному названию");
+      System.out.println("9. Зарегестрировать читателя");
+      System.out.println("10. Авторизовать читателя");
+      System.out.println("11. Показать все книги у текущего авторизованного пользователя");
+      System.out.println("12. Выйти из пользователя");
       System.out.println("0. Выход из программмы");
       int command = scanner.nextInt();
       scanner.nextLine();
@@ -53,7 +57,7 @@ public class Menu {
         case 3: {
           System.out.println("Введите id желаемой книги");
           int id = scanner.nextInt();
-          bookService.takeBookWithDate(id);
+          bookService.takeBookWithDate(id, bookService.getAuthorisedReader());
         }
         break;
         case 4: {
@@ -81,6 +85,43 @@ public class Menu {
           System.out.println("Введите искомое название");
           String name = scanner.nextLine();
           System.out.println(bookService.showAllBooksByName(name));
+        }
+        break;
+        case 9: {
+          System.out.println("Введите Имя");
+          String firstName = scanner.nextLine();
+          System.out.println("Введите Фамилию");
+          String lastName = scanner.nextLine();
+          System.out.println("введите возраст");
+          int age = scanner.nextInt();
+          scanner.nextLine();
+          System.out.println("Введите email");
+          String email = scanner.nextLine();
+          System.out.println("Введите пароль");
+          String password = scanner.nextLine();
+          System.out.println(
+              "Пользователь зарегестрирован: " + bookService.registerReader(firstName, lastName,
+                  age, email, password));
+        }
+        break;
+        case 10: {
+          if (bookService.getAuthorisedReader() != null) {
+            System.out.println("Пользователь уже залогинен! Сначала выйдите из учетной записи!");
+            break;
+          }
+          System.out.println("Введите email");
+          String email = scanner.nextLine();
+          System.out.println("Введите пароль");
+          String password = scanner.nextLine();
+          System.out.println(
+              "Пользователь авторизован: " + bookService.authorizeReader(email, password));
+        }
+        break;
+        case 11: {
+          System.out.println(bookService.showAllbooksByReader());
+        }break;
+        case 12: {
+          System.out.println(bookService.logoutReader());
         }
       }
     }

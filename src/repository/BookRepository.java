@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.function.Predicate;
 import lib.MyArrayList;
 import models.Book;
+import models.Reader;
 
 public class BookRepository {
 
@@ -50,16 +51,19 @@ public class BookRepository {
     return output;
   }
 
-  public Book takeBookWithDate(int id) {
+  public Book takeBookWithDate(int id, Reader reader) {
     for (Book book : books) {
       if (id == book.getId()) {
-        if (!book.isTaken()) {
+        if (!book.isTaken() && reader != null) {
+          book.setReader(reader);
+          reader.addBooksOfReader(book);
           book.setTaken(true);
           book.setLocalDate(LocalDate.now());
           System.out.println(book.getName() + " успешно взята");
           return book;
         } else {
-          System.out.println("Книга уже взята! Попобуйте взять другую книгу");
+          System.out.println(
+              "Книга уже взята! Попобуйте взять другую книгу. Или читатель не указан");
           return null;
         }
       }
@@ -69,20 +73,32 @@ public class BookRepository {
   }
 
 
-  public Book returnBook(int id) {
+  public Book returnBook(int id, Reader reader) {
+    if (reader == null) {
+      System.out.println("Нет текущего читателя. Авторизуйтесь.");
+      return null;
+    }
     for (Book book : books) {
       if (book.getId() == id) {
-        if (book.isTaken()) {
-          book.setTaken(false);
-          System.out.println("Книга " + book.getName() + " была возвращена!");
-          return book;
+        if (book.getReader() == reader) {
+          if (book.isTaken()) {
+            book.setReader(null);
+            book.deleteBook(reader);
+            book.setTaken(false);
+            System.out.println("Книга " + book.getName() + " была возвращена!");
+            return book;
+          } else {
+            System.out.println(
+                "Книга с таким ID уже находится в библиотеке.");
+            return null;
+          }
         } else {
-          System.out.println("Книга с таким ID уже находится в библиотеке");
+          System.out.println("Книгу возвращает тот, кто ее не брал. Смените пользователя. Или она в библиотеке");
           return null;
         }
       }
     }
-    System.out.println("Книга с таким ID не найдена");
+    //System.out.println("Книга с таким ID и таким читателем не найдена");
     return null;
   }
 
@@ -96,6 +112,7 @@ public class BookRepository {
     }
     return result;
   }
+
 
 }
 

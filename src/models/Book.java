@@ -16,7 +16,7 @@ public class Book {
 
   private final int id;
 
-  //private final Reader reader;
+  private Reader reader;
 
   private static int counter = 1;
 
@@ -30,6 +30,7 @@ public class Book {
     this.id = counter;
     counter++;
     localDate = LocalDate.of(2000, 11, 15);
+    this.reader = null;
   }
 
   @Override
@@ -41,7 +42,8 @@ public class Book {
         ", numberOfPages=" + numberOfPages +
         ", isTaken=" + isTaken +
         ", id=" + id +
-        ", Дата " + localDate +
+        ", Дата поступления в библиотеку " + localDate +
+        ", Читатель = " + getReader()+
         '}' + "\n";
   }
 
@@ -100,7 +102,19 @@ public class Book {
   public int getCounter() {
     return counter;
   }
+
   public static void setCounter(int counter) {
     Book.counter = counter;
+  }
+
+  public Reader getReader() {
+    return reader;
+  }
+
+  public void setReader(Reader reader) {
+    this.reader = reader;
+  }
+  public void deleteBook(Reader reader) {
+    reader.deleteBooksOfReader(this);
   }
 }
