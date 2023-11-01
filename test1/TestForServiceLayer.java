@@ -15,12 +15,9 @@ public class TestForServiceLayer {
 
   private BookService bookService;
 
-  //private BookRepository bookRepository;
-
 
   public TestForServiceLayer() {
     BookRepository repository = new BookRepository();
-    System.out.println("создали еще один репозиторий");
     this.bookService = new BookService(repository);
   }
 
@@ -56,32 +53,22 @@ public class TestForServiceLayer {
     Assertions.assertEquals(12, count + 2);
   }
 
-  @ParameterizedTest
-  //@ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
-  @MethodSource("testdata")
-  void testTakeBookWithDateCorrectId(int correctId) {
-    System.out.println(correctId);
-    System.out.println(bookService.getAllBooks());
-    Assertions.assertTrue(bookService.takeBookWithDate(correctId));
-  }
-  static Stream<Integer> testdata() {
-    return Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+  @Test
+  void testTakeBookWithDateCorrectId() {
+    for (int i = 1; i <= 10; i++) {
+      Assertions.assertTrue(bookService.takeBookWithDate(i));
+    }
   }
 
   @Test
-  void testTakeBookWithDateCorrectId1(){
-    for (int i = 1; i<=10; i++ )
-    Assertions.assertTrue(bookService.takeBookWithDate(i));
-  }
-
-  @Test
-  void test() {
-    Assertions.assertTrue(bookService.takeBookWithDate(2));
-  }
-
-  @Test
-  void test1() {
-    Assertions.assertTrue(bookService.takeBookWithDate(3));
+  void testShowAllBooksByAuthor() {
+    MyArrayList<Book> books = bookService.showAllBooksByAuthor("Толстой Л.Н.");
+    int count = 0;
+    for (Book book :books) {
+      count++;
+    }
+    Assertions.assertEquals(4, count);
   }
 
 

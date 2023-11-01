@@ -27,7 +27,6 @@ public class Book {
     this.id = counter;
     counter++;
     localDate = LocalDate.of(2000,11,15);
-    System.out.println(counter + " Это наш counter");
   }
 
   @Override

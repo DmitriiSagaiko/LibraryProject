@@ -8,8 +8,6 @@ public class BookRepository {
 
   private final MyArrayList<Book> books;
 
-  private final static int MAX_BOOK_COUNTER = 100;
-
   public BookRepository() {
     books = new MyArrayList<>();
     init();
@@ -17,7 +15,6 @@ public class BookRepository {
   }
 
   private void init() {
-    System.out.println("Вызов метода init");
     books.addAll(
         // TODO добавить несколько кнги от одного автора
         new Book("Война и Мир часть 1", "Толстой Л.Н.", 1915, 460),
