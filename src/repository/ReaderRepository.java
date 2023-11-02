@@ -41,10 +41,9 @@ public class ReaderRepository {
   }
 
   public MyArrayList<Book> getBooksByReader(Reader reader) {
-    MyArrayList<Book> output =new MyArrayList<>();
-    output=reader.getBooksOfReader();
+    MyArrayList<Book> output = new MyArrayList<>();
+    output = reader.getBooksOfReader();
     return output;
   }
-
 
 }

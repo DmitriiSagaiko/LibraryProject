@@ -1,6 +1,5 @@
 package service;
 
-import java.time.LocalDate;
 import lib.MyArrayList;
 import models.Book;
 import models.Reader;
@@ -35,12 +34,11 @@ public class BookService {
   }
 
   public boolean takeBookWithDate(int id, Reader reader) {
-    // Будет вызываться 2 метода про пользователя
     return bookRepository.takeBookWithDate(id, reader) != null;
   }
 
-  public void returnBook(int id) {
-    bookRepository.returnBook(id, getAuthorisedReader());
+  public boolean returnBook(int id) {
+    return bookRepository.returnBook(id, getAuthorisedReader()) != null;
   }
 
 
@@ -114,11 +112,9 @@ public class BookService {
       System.out.println("Читатель не авторизован");
       return false;
     }
-
     getAuthorisedReader().setAuthorized(false);
     System.out.println("Выход выполнен");
     return true;
   }
-
 
 }

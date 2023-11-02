@@ -14,12 +14,10 @@ public class Reader {
 
   private int age;
 
-  private MyArrayList<Book>booksOfReader;
-
+  private MyArrayList<Book> booksOfReader;
 
   private int booksCount;
 
-  //private static int count;
 
   public Reader(String firstName, String lastName, int age, String email, String password) {
     this.firstName = firstName;

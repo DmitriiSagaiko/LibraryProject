@@ -43,7 +43,7 @@ public class Book {
         ", isTaken=" + isTaken +
         ", id=" + id +
         ", Дата поступления в библиотеку " + localDate +
-        ", Читатель = " + getReader()+
+        ", Читатель = " + getReader() +
         '}' + "\n";
   }
 
@@ -114,6 +114,7 @@ public class Book {
   public void setReader(Reader reader) {
     this.reader = reader;
   }
+
   public void deleteBook(Reader reader) {
     reader.deleteBooksOfReader(this);
   }

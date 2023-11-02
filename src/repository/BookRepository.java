@@ -32,7 +32,7 @@ public class BookRepository {
   }
 
   public void addBook(Book book) {
-    books.add(book);//
+    books.add(book);
     System.out.println("Книга была добавлена\n");
   }
 
@@ -93,12 +93,13 @@ public class BookRepository {
             return null;
           }
         } else {
-          System.out.println("Книгу возвращает тот, кто ее не брал. Смените пользователя. Или она в библиотеке");
+          System.out.println(
+              "Книгу возвращает тот, кто ее не брал. Смените пользователя. Или она в библиотеке");
           return null;
         }
       }
     }
-    //System.out.println("Книга с таким ID и таким читателем не найдена");
+    System.out.println("Книга с таким ID " + id + " не зарегестрирована в нашей библиотеке");
     return null;
   }
 
@@ -112,7 +113,6 @@ public class BookRepository {
     }
     return result;
   }
-
 
 }
 
